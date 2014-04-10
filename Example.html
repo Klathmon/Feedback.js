@@ -1,0 +1,26 @@
+<script type="text/javascript" src="path/to/js/notifications.js"></script>
+
+<button id="initSound">Init Sound</button>
+<button id="testSound">Play Sound</button>
+<button id="testVibrate">Test Vibration</button>
+<button id="speakStuff">Speak Stuff</button>
+
+<script>    
+    var notifications = new Notifications;
+
+    document.querySelector('#initSound').onclick = function(){
+        notifications.init();
+    };
+
+    document.querySelector('#testSound').onclick = function(){
+        notifications.playTone(notifications.freqEnum.high, 1000);
+    };
+    
+    document.querySelector('#testVibrate').onclick = function(){
+        notifications.vibrate(1000);
+    };
+    
+    document.querySelector('#speakStuff').onclick = function(){
+        notifications.speak('I am speaking stuff as a test');
+    };
+</script>
