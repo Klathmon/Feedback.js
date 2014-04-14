@@ -4,6 +4,7 @@
 <button id="testSound">Play Sound</button>
 <button id="testVibrate">Test Vibration</button>
 <button id="speakStuff">Speak Stuff</button>
+<button id="playsoundthenspeak">Play Tone then Speak Stuff</button>
 
 <script>    
     var notifications = new Notifications;
@@ -22,5 +23,11 @@
     
     document.querySelector('#speakStuff').onclick = function(){
         notifications.speak('I am speaking stuff as a test');
+    };
+    
+    document.querySelector('#playsoundthenspeak').onclick = function(){
+        notifications.playTone(notifications.freqEnum.medium, 1000).whenDone(function(){
+            notifications.speak('I am speaking stuff as a test');
+        });
     };
 </script>
