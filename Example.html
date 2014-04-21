@@ -1,30 +1,52 @@
 <script type="text/javascript" src="path/to/js/notifications.js"></script>
 
 <button id="initSound">Init Sound</button>
-<button id="testSound">Play Sound</button>
+<button id="highTone">Play High Tone</button>
+<button id="medTone">Play Med Tone</button>
+<button id="lowTone">Play Low Tone</button>
+<button id="highmedTone">Play High-Med Tone</button>
+<button id="dualTone">Play Dual Tone</button>
 <button id="testVibrate">Test Vibration</button>
 <button id="speakStuff">Speak Stuff</button>
-<button id="playsoundthenspeak">Play Tone then Speak Stuff</button>
+<button id="playsoundthenspeak">Play Med Tone then Speak Stuff</button>
 
-<script>    
+<script>
     var notifications = new Notifications;
 
     document.querySelector('#initSound').onclick = function(){
         notifications.init();
     };
 
-    document.querySelector('#testSound').onclick = function(){
-        notifications.playTone(notifications.freqEnum.high, 1000);
+    document.querySelector('#highTone').onclick = function(){
+        notifications.playTone(notifications.freqEnum.high, 500);
     };
-    
+
+    document.querySelector('#medTone').onclick = function(){
+        notifications.playTone(notifications.freqEnum.medium, 500);
+    };
+
+    document.querySelector('#lowTone').onclick = function(){
+        notifications.playTone(notifications.freqEnum.low, 500);
+    };
+
+    document.querySelector('#highmedTone').onclick = function(){
+        notifications.playTone(notifications.freqEnum.high, 250).whenDone(function(){
+            notifications.playTone(notifications.freqEnum.medium, 250);
+        });
+    };
+
+    document.querySelector('#dualTone').onclick = function(){
+        notifications.playTone(notifications.freqEnum.low, 500).playTone(notifications.freqEnum.medium, 500);
+    };
+
     document.querySelector('#testVibrate').onclick = function(){
-        notifications.vibrate(1000);
+        notifications.vibrate(500);
     };
-    
+
     document.querySelector('#speakStuff').onclick = function(){
         notifications.speak('I am speaking stuff as a test');
     };
-    
+
     document.querySelector('#playsoundthenspeak').onclick = function(){
         notifications.playTone(notifications.freqEnum.medium, 1000).whenDone(function(){
             notifications.speak('I am speaking stuff as a test');
