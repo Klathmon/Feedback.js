@@ -22,20 +22,18 @@ Notifications.prototype.init = function(){
     }
 
     var oscillator = this.audioContext.createOscillator();
+    oscillator.start = oscillator.noteOn || oscillator.start;
+    oscillator.stop = oscillator.noteOff || oscillator.stop;
     oscillator.type = 0;
     oscillator.frequency.value = 100;
     oscillator.gain = 0;
     oscillator.connect(this.audioContext.destination);
 
-    oscillator.start = oscillator.noteOn || oscillator.start;
     oscillator.start(0);
 
     setTimeout(function(){
-        oscillator.stop = oscillator.noteOff || oscillator.stop;
         oscillator.stop(0);
     }, 100);
-
-    //TODO: Create a sound here to init the AudioContext on iOS 6
 
     return this;
 };
@@ -56,11 +54,9 @@ Notifications.prototype.playTone = function(frequency, length){
         oscillator.connect(this.audioContext.destination);
 
         this.makingSound = true;
-        oscillator.start = oscillator.noteOn || oscillator.start;
         oscillator.start(0);
 
         setTimeout(function(){
-            oscillator.stop = oscillator.noteOff || oscillator.stop;
             oscillator.stop(0);
             parent.makingSound = false;
         }, length);
