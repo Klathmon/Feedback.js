@@ -4,7 +4,7 @@
 <button id="highTone">Play High Tone</button>
 <button id="medTone">Play Med Tone</button>
 <button id="lowTone">Play Low Tone</button>
-<button id="highmedTone">Play High-Med Tone</button>
+<button id="multiTone">Play Multi Tone</button>
 <button id="dualTone">Play Dual Tone</button>
 <button id="testVibrate">Test Vibration</button>
 <button id="speakStuff">Speak Stuff</button>
@@ -18,25 +18,23 @@
     };
 
     document.querySelector('#highTone').onclick = function(){
-        notifications.playTone(notifications.freqEnum.high, 500);
+        notifications.beep(notifications.freqEnum.high, 500);
     };
 
     document.querySelector('#medTone').onclick = function(){
-        notifications.playTone(notifications.freqEnum.medium, 500);
+        notifications.beep(notifications.freqEnum.medium, 500);
     };
 
     document.querySelector('#lowTone').onclick = function(){
-        notifications.playTone(notifications.freqEnum.low, 500);
+        notifications.beep(notifications.freqEnum.low, 500);
     };
 
-    document.querySelector('#highmedTone').onclick = function(){
-        notifications.playTone(notifications.freqEnum.high, 250).whenDone(function(){
-            notifications.playTone(notifications.freqEnum.medium, 250);
-        });
+    document.querySelector('#multiTone').onclick = function(){
+        notifications.beep([500, 500, 1000, 1000, 0, 1500, 1000, 500, 250, 250], 800);
     };
 
     document.querySelector('#dualTone').onclick = function(){
-        notifications.playTone(notifications.freqEnum.low, 500).playTone(notifications.freqEnum.medium, 500);
+        notifications.beep(notifications.freqEnum.low, 500).beep(notifications.freqEnum.medium, 500);
     };
 
     document.querySelector('#testVibrate').onclick = function(){
@@ -48,7 +46,7 @@
     };
 
     document.querySelector('#playsoundthenspeak').onclick = function(){
-        notifications.playTone(notifications.freqEnum.medium, 1000).whenDone(function(){
+        notifications.beep(notifications.freqEnum.medium, 1000).whenDone(function(){
             notifications.speak('I am speaking stuff as a test');
         });
     };
