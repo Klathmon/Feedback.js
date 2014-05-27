@@ -1,4 +1,4 @@
-<script type="text/javascript" src="path/to/js/notifications.js"></script>
+<script type="text/javascript" src="path/to/js/feedback.js"></script>
 
 <button id="initSound">Init Sound</button>
 <button id="highTone">Play High Tone</button>
@@ -11,43 +11,43 @@
 <button id="playsoundthenspeak">Play Med Tone then Speak Stuff</button>
 
 <script>
-    var notifications = new Notifications;
+    var feedback = new Feedback;
 
     document.querySelector('#initSound').onclick = function(){
-        notifications.init();
+        feedback.init();
     };
 
     document.querySelector('#highTone').onclick = function(){
-        notifications.beep(notifications.freqEnum.high, 500);
+        feedback.beep(feedback.freqEnum.high, 500);
     };
 
     document.querySelector('#medTone').onclick = function(){
-        notifications.beep(notifications.freqEnum.medium, 500);
+        feedback.beep(feedback.freqEnum.medium, 500);
     };
 
     document.querySelector('#lowTone').onclick = function(){
-        notifications.beep(notifications.freqEnum.low, 500);
+        feedback.beep(feedback.freqEnum.low, 500);
     };
 
     document.querySelector('#multiTone').onclick = function(){
-        notifications.beep([500, 500, 1000, 1000, 0, 1500, 1000, 500, 250, 250], 800);
+        feedback.beep([500, 500, 1000, 1000, 0, 1500, 1000, 500, 250, 250], 800);
     };
 
     document.querySelector('#dualTone').onclick = function(){
-        notifications.beep(notifications.freqEnum.low, 500).beep(notifications.freqEnum.medium, 500);
+        feedback.beep(feedback.freqEnum.low, 500).beep(feedback.freqEnum.medium, 500);
     };
 
     document.querySelector('#testVibrate').onclick = function(){
-        notifications.vibrate(500);
+        feedback.vibrate(500);
     };
 
     document.querySelector('#speakStuff').onclick = function(){
-        notifications.speak('I am speaking stuff as a test');
+        feedback.speak('I am speaking stuff as a test');
     };
 
     document.querySelector('#playsoundthenspeak').onclick = function(){
-        notifications.beep(notifications.freqEnum.medium, 1000).whenDone(function(){
-            notifications.speak('I am speaking stuff as a test');
+        feedback.beep(feedback.freqEnum.medium, 1000).done(function(){
+            feedback.speak('I am speaking stuff as a test');
         });
     };
 </script>
