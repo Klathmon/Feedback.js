@@ -1,7 +1,7 @@
-Notifications.js
+Feedback.js
 ================
 
-A simple library for user notifications (speech, tones, and vibration)
+A simple library for user feedback (speech, tones, and vibration)
 
 Example usage can be found in the Example.html file.
 
